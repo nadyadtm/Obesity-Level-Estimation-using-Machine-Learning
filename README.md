@@ -107,17 +107,24 @@ Sedangkan untuk data ordinal dapat menggunakan teknik label encoding, yaitu meng
 
 ![image](assets/readme-2.PNG)
 
-Untuk menggunakan teknik label encoding dapat menggunakan `LabelEncoder` dari `scikit-learn`.
+Untuk menggunakan teknik label encoding dapat menggunakan `.cat.rename_categories()` dari `pandas`.
 
 ```python
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-df['CALC'] = le.fit_transform(df['CALC'])
+categories = {
+    'no' : 0,
+    'Sometimes' : 1,
+    'Frequently' : 2,
+    'Always' : 3
+}
+
+X['CALC'] = X['CALC'].astype('category')
+
+X['CALC']=X['CALC'].cat.rename_categories(categories)
 ```
 
 Karena kolom `CALC` dan `CAEC` mempunyai urutan, maka kita dapat mengkonversikannya dengan teknik label encoding.
 
-Karena ini adalah kasus klasifikasi, maka kolom class (`NObeyesdad`) juga perlu dikonversi menjadi bentuk angka.
+Karena ini adalah kasus klasifikasi, maka kolom class (`NObeyesdad`) juga perlu dikonversi menjadi bentuk angka agar dapat dipelajari oleh model machine learning kita.
 
 ## Data Splitting
 Dalam kasus ini kita akan membagi data menjadi 80% Train, 10% Validasi, dan 10% Test.
