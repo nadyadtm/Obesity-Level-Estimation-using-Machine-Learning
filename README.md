@@ -120,5 +120,8 @@ Karena kolom `CALC` dan `CAEC` mempunyai urutan, maka kita dapat mengkonversikan
 Karena ini adalah kasus klasifikasi, maka kolom class (`NObeyesdad`) juga perlu dikonversi menjadi bentuk angka.
 
 ## Data Splitting
-Dalam kasus ini kita akan membagi data menjadi 80% Train dan 20% Test.
+Dalam kasus ini kita akan membagi data menjadi 80% Train, 10% Validasi, dan 10% Test.
+
+## Modelling
+[On Progress]
 
