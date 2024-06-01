@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+import pickle
 
 def main():
     df = pd.read_csv('data/ObesityDataSet_raw_and_data_sinthetic.csv')
@@ -48,15 +49,26 @@ def main():
                     'SMOKE','SCC','FAVC'])
     X_ = pd.concat([X,onehot], axis=1)
 
+    X_.to_csv('data/data_processed.csv')
+
     #pembagian data
     X_train, X_test, y_train, y_test = train_test_split(
         X_, y, test_size=0.2, random_state=42)
-    X_valid, X_test, y_valid, y_test = train_test_split(
-        X_test, y_test, test_size=0.5, random_state=42)
+    # X_valid, X_test, y_valid, y_test = train_test_split(
+    #     X_test, y_test, test_size=0.5, random_state=42)
 
     print("Data Latih : ",len(y_train))
-    print("Data Valid : ",len(y_valid))
+    # print("Data Valid : ",len(y_valid))
     print("Data Test  : ",len(y_test))
+
+    train_data = {"x":X_train, "y":y_train}
+    test_data = {"x":X_test, "y":y_test}
+
+    with open("data/train_data.pickle", "wb") as f:
+        pickle.dump(train_data, f)
+        
+    with open("data/test_data.pickle", "wb") as f:
+        pickle.dump(test_data, f)
 
 
 if __name__ == "__main__":
