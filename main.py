@@ -35,7 +35,7 @@ def main():
     X['CAEC'] = X['CAEC'].astype('category')
 
     X['CALC']=X['CALC'].cat.rename_categories(categories)
-    X['CALC']=X['CAEC'].cat.rename_categories(categories)
+    X['CAEC']=X['CAEC'].cat.rename_categories(categories)
 
     #transform dengan one hot encoding
     onehot = pd.get_dummies(X[['Gender',
